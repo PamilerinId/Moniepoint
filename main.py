@@ -16,21 +16,21 @@ def read(key: str):
     value = kv_store.read(key)
     if value is None:
         raise HTTPException(status_code=404, detail="Key not found")
-    return {"key": key, "value": value}
+    return {"message": "Key data fetched successfully.", "data": {"key": key, "value": value}}
 
 
 @app.get("/read_key_range/")
 def read_key_range(start_key: str, end_key: str):
     """Fetch key-value pairs in the specified key range."""
     result = kv_store.read_key_range(start_key, end_key)
-    return {"range": result}
+    return {"message": "Data range fetched successfully.", "data": result}
 
 
 @app.post("/put/")
 def put(key: str, value: str):
     """Store a key-value pair."""
     kv_store.put(key, value)
-    return {"message": "Key-Value pair stored successfully."}
+    return {"message": "Key-Value pair stored successfully.", "data": {"key": key, "value": value}}
 
 @app.post("/batch_put/")
 def batch_put(keys: List[str], values: List[str]):
@@ -38,11 +38,11 @@ def batch_put(keys: List[str], values: List[str]):
     if len(keys) != len(values):
         raise HTTPException(status_code=400, detail="Keys and values length must match")
     kv_store.batch_put(keys, values)
-    return {"message": "Batch put successful."}
+    return {"message": "Batch put successful.", "data": {"keys": keys, "values": values}}
 
 
 @app.delete("/delete/{key}")
 def delete(key: str):
     """Delete a key-value pair."""
     kv_store.delete(key)
-    return {"message": "Key deleted successfully."}
+    return {"message": "Key deleted successfully.", "data": {"key": key}}
