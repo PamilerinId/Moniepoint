@@ -8,8 +8,8 @@ This project implements a simple key-value store API using FastAPI and Python.
 
 2. Clone this repository:
    ```
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone `https://github.com/PamilerinId/moniepoint-assessment.git`
+   cd moniepoint-assessment
    ```
 
 3. Install dependencies using Pipenv:
