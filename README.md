@@ -44,7 +44,7 @@ This project implements a simple key-value store API using FastAPI and Python.
 
 To run the tests, use the following command:
 ```
-pytest test/test_kv.py
-pytest test/test_main.py
+pytest test/test_kv.py    --- All tests pass ✔️
+pytest test/test_main.py  --- All tests pass 6️⃣
 ```
 
