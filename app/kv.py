@@ -15,7 +15,7 @@ Key-Value Store that implements a simple file-based database with the following 
     - read_key_range(start_key, end_key)
 """
 class KeyValueStore:
-    def __init__(self, filename='data.db', max_entries=10):
+    def __init__(self, filename='data/data.db', max_entries=10):
         self.filename = filename
         self.max_entries = max_entries
         self.data = OrderedDict()

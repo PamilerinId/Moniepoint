@@ -1,6 +1,6 @@
 import pytest
 import os
-from kv import KeyValueStore
+from app.kv import KeyValueStore
 
 @pytest.fixture
 def kv_store():

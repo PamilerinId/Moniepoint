@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from typing import List
-from kv import KeyValueStore
+from app.kv import KeyValueStore
 
 app = FastAPI(
     title="Moniepoint | KV DB Assessment",
