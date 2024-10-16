@@ -7,15 +7,25 @@ import threading
 import io
 
 class KeyValueStore:
-    def __init__(self, filename='data.db'):
+    def __init__(self, filename='data/data.db'):
         self.filename = filename
         self.data = {}
         self.load_data()
 
     def load_data(self):
         if os.path.exists(self.filename):
-            with open(self.filename, 'r') as f:
-                self.data = json.load(f)
+            # with open(self.filename, 'r') as f:
+            #     self.data = json.load(f)
+            os.makedirs(os.path.dirname(self.filename), exist_ok=True)
+            return
+
+        with open(self.filename, 'r') as f:
+            offset = 0
+            for line in f:
+                data = json.loads(line)
+                key = data['key']
+                self.index[key] = offset
+                offset += len(line)
 
     def save_data(self):
         with open(self.filename, 'w') as f:
