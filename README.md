@@ -27,7 +27,7 @@ This project implements a simple key-value store API using FastAPI and Python.
 
 2. Start the FastAPI server:
    ```
-   uvicorn main:app --port=8003 --reload 
+   uvicorn app.main:app --port=8003 --reload 
    ```
 
    The API will be available at `http://localhost:8003/docs`.
@@ -44,7 +44,7 @@ This project implements a simple key-value store API using FastAPI and Python.
 
 To run the tests, use the following command:
 ```
-pytest test_kv.py
-pytest test_mai0n.py
+pytest test/test_kv.py
+pytest test/test_main.py
 ```
 
