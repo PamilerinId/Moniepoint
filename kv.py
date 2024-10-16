@@ -6,6 +6,14 @@ from collections import OrderedDict
 import threading
 import io
 
+""" 
+Key-Value Store that implements a simple file-based database with the following operations:
+    - put(key, value)
+    - read(key)
+    - delete(key)
+    - batch_put(keys, values)
+    - read_key_range(start_key, end_key)
+"""
 class KeyValueStore:
     def __init__(self, filename='data/data.db'):
         self.filename = filename
