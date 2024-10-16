@@ -4,7 +4,8 @@ from kv import KeyValueStore
 
 @pytest.fixture
 def kv_store():
-    return KeyValueStore()
+    db_file = "test/test.db"
+    return KeyValueStore(filename=str(db_file), max_entries=10)
 
 def test_put_and_read(kv_store):
     kv_store.put("test_key", "test_value")
@@ -39,7 +40,7 @@ def test_batch_put_large(kv_store):
     values = [f"value{i}" for i in range(20)]
     kv_store.batch_put(keys, values)
     
-    # Check that only the last 10 keys are in the index
+    # Check that only the last 10 keys are in the store
     for i in range(10):
         with pytest.raises(KeyError):
             kv_store.read(f"key{i}")
@@ -77,21 +78,21 @@ def test_index_size_limit(kv_store):
     for i in range(15):
         kv_store.put(f"key{i}", f"value{i}")
     
-    # The index size is set to 10, so the first 5 keys should be removed from the index
+    # The max_entries is set to 10, so the first 5 keys should be removed
     with pytest.raises(KeyError):
         kv_store.read("key0")
     
-    # The last 10 keys should still be in the index
+    # The last 10 keys should still be in the store
     for i in range(5, 15):
         assert kv_store.read(f"key{i}") == f"value{i}"
 
-def test_persistence(tmp_path):
-    db_file = tmp_path / "persist_test.db"
-    kv_store1 = KeyValueStore(filename=str(db_file))
+def test_persistence():
+    db_file = "test/persist_test.db"
+    kv_store1 = KeyValueStore(filename=str(db_file), max_entries=10)
     
     kv_store1.put("persist_key", "persist_value")
     
     # Create a new instance with the same file
-    kv_store2 = KeyValueStore(filename=str(db_file))
+    kv_store2 = KeyValueStore(filename=str(db_file), max_entries=10)
     
     assert kv_store2.read("persist_key") == "persist_value"
