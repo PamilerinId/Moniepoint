@@ -8,6 +8,7 @@ fastapi = "*"
 uvicorn = "*"
 pytest = "*"
 httpx = "*"
+pytest-benchmark = "*"
 
 [dev-packages]
 
