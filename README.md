@@ -57,6 +57,6 @@ pytest test/test_benchmarks.py
 ### Notes
 - I set the max_entries to 10000, and ran the benchmarks 3 times for each operation in an attempt to simulate a heavy load on the server.
 - The batch_put was only run once as it took too long to run.
-- The read operation was the fastest, followed by the put operation(obviously), then the delete operation.
+- The read operation was the fastest, followed by the put operation(obviously).
 
 
