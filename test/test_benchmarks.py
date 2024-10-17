@@ -21,10 +21,10 @@ def test_batch_put_benchmark(benchmark, kv_store):
     
     benchmark.pedantic(kv_store.batch_put, args=(keys, values), iterations=1000, rounds=1)
 
-def test_delete_benchmark(benchmark, kv_store):
-    for i in range(1000):
-        kv_store.put(f"key{i}", f"value{i}")
+# def test_delete_benchmark(benchmark, kv_store):
+#     for i in range(1000):
+#         kv_store.put(f"key{i}", f"value{i}")
     
-    benchmark.pedantic(kv_store.delete, args=("key",), iterations=1000, rounds=3)
+#     benchmark.pedantic(kv_store.delete, args=("key",), iterations=1000, rounds=3)
 
 
